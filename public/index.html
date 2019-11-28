@@ -15,28 +15,48 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Interface</title>
   </head>
-  <body>
-    <!-- Introduire l'alias-->
-    <label for="alias"></label>
-    <input type="text" id="alias" />
-    <button>Enregistrer</button>
 
-    <div class="global-container">
-      <!-- Formulaire pour afficher les messages-->
-      <form action="#" id="form-display">
-        <button id="game">game</button>
-        <button id="web">web</button>
-        <div id="container-msg"></div>
-      </form>
-      <!--Formulaire pour envoyer un message-->
+  <body>
+    <div class="sideNavBar">
+      <div id="aligne">
+        <div class="logo-img">
+          <img src="./public/assets/images/logo.svg" alt="logo" />
+        </div>
+
+        <div id="groupes">
+          <a id="genaral" href="#">#GENERAL</a>
+          <a id="wad" href="#">#WAD</a>
+          <a id="web" href="#">#WEB</a>
+          <a id="game" href="#">#GAME</a>
+        </div>
+      </div>
     </div>
-    <form class="form-inline">
-      <label for="msg">Entrez votre message:</label>
-      <input type="text" id="msg" />
-      <button id="btn-envoie">Envoyer</button>
-    </form>
+    <div class="main">
+      <br />
+      <!-- Introduire l'alias-->
+      <label for="alias"></label>
+      <input type="text" id="alias" />
+      <button>Enregistrer</button>
+      <div class="global-container">
+        <div id="container-msg"></div>
+        <br />
+        <form class="form-inline">
+          Entrez votre message:<br />
+          <textarea id="msg" type="text"></textarea>
+          <button
+            id="btn-envoie"
+            class="btn waves-effect waves-light"
+            type="submit"
+            name="action"
+          >
+            Envoyer
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
