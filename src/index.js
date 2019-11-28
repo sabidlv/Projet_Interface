@@ -1,5 +1,4 @@
 
-
   import * as firebase from 'firebase/app';
   import 'firebase/database';  
 
@@ -16,16 +15,30 @@ firebase.initializeApp(config);
 var database = firebase.database();//.ref('WAD/');
 let data = "";
 
+
+
+class ObjMessage{
+  constructor(user, msg){
+    this.user= user;
+    this.msg= msg;
+  }
+}
+let user = document.getElementById('alias').value;
+console.log(user); 
+
 document.getElementById('game').addEventListener('click',()=>{
-  console.log('les GAME');
+  debugger;
  document.getElementById('container-msg').innerHTML="";
   data = database.ref('GAME/');
   data.on('child_added', function(snap){
-    //console.log('les valeurs'+snap.val());
+  let enfant1 = document.createElement('p');  
   let enfant= document.createElement('p');
-  console.log(snap.val());
-  let text = document.createTextNode(snap.val().msg);
+  console.log('le set'+ snap.val().objmsg.user);
+  let alias = document.createTextNode(snap.val().objmsg.user);
+  let text = document.createTextNode(snap.val().objmsg.msg);
+  enfant1.appendChild(alias);
   enfant.appendChild(text);
+  document.getElementById('container-msg').appendChild(enfant1);  
   document.getElementById('container-msg').appendChild(enfant);
   });
 });
@@ -33,28 +46,35 @@ document.getElementById('game').addEventListener('click',()=>{
 document.getElementById('web').addEventListener('click',()=>{
   document.getElementById('container-msg').innerHTML="";
    data = database.ref('WEB/');
-  data.on('child_added', function(snap){
-    //console.log('les valeurs'+snap.val());
-  let enfant= document.createElement('p');
-  console.log(snap.val());
-  let text = document.createTextNode(snap.val().msg);
-  enfant.appendChild(text);
-  document.getElementById('container-msg').appendChild(enfant);
+   data.on('child_added', function(snap){
+    let enfant1 = document.createElement('p');  
+    let enfant= document.createElement('p');
+    console.log('le set'+ snap.val().objmsg.user);
+    let alias = document.createTextNode(snap.val().objmsg.user);
+    let text = document.createTextNode(snap.val().objmsg.msg);
+    enfant1.appendChild(alias);
+    enfant.appendChild(text);
+    document.getElementById('container-msg').appendChild(enfant1);  
+    document.getElementById('container-msg').appendChild(enfant);
   });
 });
 
 //pusher un post
+
+
 let mybtn = document.getElementById('btn-envoie');
 mybtn.addEventListener('click', function(event){
     event.preventDefault();
     let msg = document.getElementById('msg').value;
-    console.log('message '+ msg);
-    data.push({msg});
+    const objmsg = new ObjMessage(user,msg);
+    
+    console.log('message '+ objmsg);
+    data.push({objmsg});
     document.getElementById('msg').value='';
     document.getElementById('msg').focus();
  
 });
-//user:
+/*user:
 let database1 = firebase.database().ref('USER/');
 let btnUser = document.getElementById('btnUser');
 btnUser.addEventListener('click', function(event){
@@ -64,5 +84,5 @@ btnUser.addEventListener('click', function(event){
     database1.push({msg});
 
  
-});
+});*/   
 
