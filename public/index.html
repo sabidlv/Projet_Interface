@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   
+    <title>Interface</title>
+  </head>
+  <body>
+    <div class="global-container">
+      <form action="#" id="form-user">
+        <label for="ipt-user">USER :</label>
+        <input type="text" name="ipt-user" id="user" />
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <title>Interface</title>
-</head>
+        <label for="ipt-password">Password :</label>
+        <input type="text" name="ipt-password" id="password" />
 
-<body>
+        <button type="submit" id="btnUser">ADD</button>
+      </form>
 
-</body>
-
+      <form action="#" id="form-display">
+        <button type="submit" id="game">game</button>
+        <button type="submit" id="web">web</button>
+        <div id="container-msg"></div>
+      </form>
+      <!--Formulaire pour envoyer un message-->
+    </div>
+    <form class="form-inline">
+      <label for="">Entrez votre message:</label>
+      <input type="text" id="msg" />
+      <button id="btn-envoie">Envoyer</button>
+    </form>
+  </body>
 </html>
+
