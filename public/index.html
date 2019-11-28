@@ -9,6 +9,28 @@
     <title>Interface</title>
   </head>
   <body>
-    <div class="msg">hello world</div>
+    <div class="global-container">
+      <form action="#" id="form-user">
+        <label for="ipt-user">USER :</label>
+        <input type="text" name="ipt-user" id="user" />
+
+        <label for="ipt-password">Password :</label>
+        <input type="text" name="ipt-password" id="password" />
+
+        <button type="submit" id="btnUser">ADD</button>
+      </form>
+
+      <form action="#" id="form-display">
+        <button type="submit" id="game">game</button>
+        <button type="submit" id="web">web</button>
+        <div id="container-msg"></div>
+      </form>
+      <!--Formulaire pour envoyer un message-->
+    </div>
+    <form class="form-inline">
+      <label for="">Entrez votre message:</label>
+      <input type="text" id="msg" />
+      <button id="btn-envoie">Envoyer</button>
+    </form>
   </body>
 </html>
