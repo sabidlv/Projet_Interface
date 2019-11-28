@@ -37,6 +37,7 @@
     "webpack-fix-style-only-entries": "0.4.0"
   },
   "dependencies": {
-    "firebase": "^7.5.0"
+    "firebase": "^7.5.0",
+    "jquery": "^3.4.1"
   }
 }
