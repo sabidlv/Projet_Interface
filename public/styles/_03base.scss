@@ -1,15 +1,21 @@
+*{
+  box-sizing: border-box;
+}
 body{
   background-color: #006064 ;
   background-image: url("./assets/images/back.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
 }
 p{
+  font-size: 1.2rem;
   display: block;
   border: 1px solid black;
-  width: 100px;
-  height: 50px;
+  border-radius: 10px;
+  width: 80%;
+  word-wrap: break-word;
+  height: auto;
   color: black;
-
 }
 img {
   width: 100px;
@@ -63,4 +69,12 @@ img {
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+#alias{
+  background-color: white;
+  width: 150px;
+  height: 30px;
+}
+#label-alias{
+color: white;
 }

@@ -26,7 +26,6 @@
         <div class="logo-img">
           <img src="./public/assets/images/logo.svg" alt="logo" />
         </div>
-
         <div id="groupes">
           <a id="genaral" href="#">#GENERAL</a>
           <a id="wad" href="#">#WAD</a>
@@ -38,9 +37,14 @@
     <div class="main">
       <br />
       <!-- Introduire l'alias-->
-      <label for="alias"></label>
-      <input type="text" id="alias" />
-      <button>Enregistrer</button>
+      <form id="form-alias">
+        <label for="alias" id="label-alias">Entrer votre alias</label>
+        <input type="text" id="alias" />
+        <button id="btn-alias" class="waves-effect waves-light btn">
+          Enregistrer
+        </button>
+      </form>
+      <!--TCHAT-->
       <div class="global-container">
         <div id="container-msg"></div>
         <br />
