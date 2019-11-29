@@ -2,10 +2,10 @@
   box-sizing: border-box;
 }
 body{
-  background-color: #006064 ;
   background-image: url("./assets/images/back.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
 p{
   font-size: 1.2rem;
@@ -15,9 +15,13 @@ p{
   height: auto;
   color: black;
 }
-img {
+.logo-img img {
   width: 100px;
   height: auto;
+}
+
+.logo-img {
+  margin-top: 15px;
 }
 
 .sideNavBar {
@@ -85,6 +89,7 @@ color: white;
 color: white;
 }
 
+
 #wad{
   visibility: hidden;
 }
@@ -93,4 +98,13 @@ color: white;
 }
 #game{
   visibility: hidden;
+}
+.hidden {
+  display: none;
+}
+
+.footer {
+  text-align: center;
+  bottom: 0;
+
 }
