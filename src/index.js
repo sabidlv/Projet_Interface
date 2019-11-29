@@ -140,19 +140,22 @@ const auth = firebase.auth();
 // const db = firebase.firestore();
 
 // ---------- QUAND LE STATUS CHANGE
-const login_content = document.querySelector('.login-content');
+const loginContent = document.querySelector('.login-content');
+const plsLogin = document.querySelector('.plsLogin');
 
 auth.onAuthStateChanged((user) => {
   if (user) {
     // User is signed in.
     console.log('user is logged in');
     setupUI(user);
-    login_content.style.display = 'block';
+    loginContent.style.display = 'block';
+    plsLogin.style.display = 'none';
   } else {
     // User is signed out.
     console.log('user is logged out');
     setupUI();
-    login_content.style.display = 'none';
+    loginContent.style.display = 'none';
+    plsLogin.style.display = 'block';
   }
 });
 
