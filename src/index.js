@@ -1,7 +1,8 @@
+
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
-import 'firebase/firestore';
+import { ajoutMessageTchat } from './app/helpers';
 
 const config = {
   apiKey: 'AIzaSyCImrYHsVo251bni1yRSMUjqWeoS9MXcms',
@@ -9,22 +10,6 @@ const config = {
   databaseURL: 'https://interface-581ae.firebaseio.com',
   storageBucket: 'interface-581ae.appspot.com',
 };
-firebase.initializeApp(config);
-const database = firebase.database();
-const database1 = firebase.database().ref('USER/');
-const database2 = firebase.database().ref();
-const query = database2.child('USER').orderByChild('user').equalTo('cc');
-
-
-let data = '';
-let user = ' ';
-
-query.on('child_added', (snap) => {
-  const data = snap.val();
-  console.log(data);
-});
-
-
 class ObjMessage {
   constructor(user, msg) {
     this.user = user;
@@ -37,21 +22,47 @@ class ObjUser {
     this.groupe = groupe;
   }
 }
+let data = '';
+let user = ' ';
+
+firebase.initializeApp(config);
+const database = firebase.database();
+const database1 = firebase.database().ref('USER/');
+const database2 = firebase.database().ref();
+const query = database2.child('USER').orderByChild('user');// .equalTo('value');
+
+query.on('child_added', (snap) => {
+  const data = snap.val();
+  console.log(data);
+});
+
 // se loguer avec son alias
 document.getElementById('btn-login-alias').addEventListener('click', () => {
   user = document.getElementById('alias').value;
-});
 
+  query.once('value', (snapshot) => {
+    console.log(snapshot.val());
+    snapshot.forEach((snap) => {
+      if (snap.val().user === user) {
+        console.log(snap.val().groupe);
+        document.getElementById(snap.val().groupe).setAttribute('style', 'visibility: visible;');
+        document.getElementById('label-alias').setAttribute('style', 'visibility: hidden;');
+        document.getElementById('alias').setAttribute('style', 'visibility: hidden;');
+      }
+    });
+  });
+});
 
 // se faire un alias, creation
 document.getElementById('btn-save-alias').addEventListener('click', () => {
   user = document.getElementById('alias').value;
-  const groupe = 'WAD';
+
+  const groupe = document.getElementById('alias-groupe').value;
   const objUtilisateur = new ObjUser(user, groupe);
   database1.push(objUtilisateur);
   document.getElementById('alias').value = '';
+  document.getElementById('alias-groupe').value = '';
 });
-
 
 // tchat
 document.getElementById('game').addEventListener('click', () => {
@@ -71,25 +82,7 @@ document.getElementById('wad').addEventListener('click', () => {
   ajoutMessageTchat(data, user);
 });
 
-// function pour afficher le tchat
-function ajoutMessageTchat(data, user) {
-  document.getElementById('container-msg').innerHTML = '';
-  data.on('child_added', (snap) => {
-    const mydiv = document.createElement('div');
-    const enfant1 = document.createElement('p');
-    const enfant = document.createElement('p');
-    // enfant.classList.add('red');
-    // enfant.classList.add('darken-3');
-    const alias = document.createTextNode(snap.val().objmsg.user);
-    console.log(snap.val());
-    const text = document.createTextNode(snap.val().objmsg.msg);
-    enfant1.appendChild(alias);
-    enfant.appendChild(text);
-    document.getElementById('container-msg').appendChild(mydiv);
-    mydiv.appendChild(enfant1);
-    mydiv.appendChild(enfant);
-  });
-}
+
 // pusher un post
 const mybtn = document.getElementById('btn-envoie');
 mybtn.addEventListener('click', (event) => {
@@ -188,10 +181,8 @@ logout.addEventListener('click', (e) => {
 const login = document.querySelector('#login-form');
 login.addEventListener('submit', (e) => {
   e.preventDefault();
-
   const email = document.querySelector('#login-email').value;
   const password = document.querySelector('#login-password').value;
-
   auth.signInWithEmailAndPassword(email, password)
     .then((cred) => {
       // close the signup modal & reset form
