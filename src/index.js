@@ -38,16 +38,18 @@ query.on('child_added', (snap) => {
 
 // se loguer avec son alias
 document.getElementById('btn-login-alias').addEventListener('click', () => {
-  user = document.getElementById('alias').value;
+  user = document.getElementById('alias-login').value;
 
   query.once('value', (snapshot) => {
     console.log(snapshot.val());
+    console.log('TTTTTTTTTTTTTTTT');
+    console.log(user);
     snapshot.forEach((snap) => {
       if (snap.val().user === user) {
         console.log(snap.val().groupe);
         document.getElementById(snap.val().groupe).setAttribute('style', 'visibility: visible;');
         document.getElementById('label-alias').setAttribute('style', 'visibility: hidden;');
-        document.getElementById('alias').setAttribute('style', 'visibility: hidden;');
+        document.getElementById('alias-login').setAttribute('style', 'visibility: hidden;');
         document.getElementById('label-groupe').setAttribute('style', 'visibility: hidden;');
         document.getElementById('alias-groupe').setAttribute('style', 'visibility: hidden;');
       }

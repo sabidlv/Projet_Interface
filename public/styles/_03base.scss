@@ -11,6 +11,11 @@ body{
   background-position: top, top;
   
 }
+h5 {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold ;
+}
 p{
   font-size: 1.2rem;
 
@@ -20,7 +25,6 @@ p{
   color: black;
   border: 2px solid darkgray;
   border-radius: 10px;
-  font-weight: bold ;
 }
 .logo-img img {
   width: 8vw;
@@ -102,7 +106,7 @@ align-content: center;
 #btn-login-alias{
   width: 20vw;
 }
-#alias{
+#alias, #alias-login{
   background-color: white;
   width: 150px;
   height: 30px;
@@ -129,6 +133,7 @@ color: white;
 #game{
   visibility: hidden;
 }
+
 .hidden {
   display: none;
 }
