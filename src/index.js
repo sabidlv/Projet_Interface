@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
-// import 'firebase/firestore';
+import 'firebase/firestore';
 
 const config = {
   apiKey: 'AIzaSyCImrYHsVo251bni1yRSMUjqWeoS9MXcms',
@@ -120,6 +120,7 @@ const loginLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
 
 const setupUI = (user) => {
+  debugger;
   if (user) {
     // info profil
     const html = `
@@ -146,12 +147,15 @@ const auth = firebase.auth();
 
 // ---------- QUAND LE STATUS CHANGE
 auth.onAuthStateChanged((user) => {
+  debugger;
   if (user) {
     // User is signed in.
     console.log('user is logged in');
+    setupUI(user);
   } else {
     // User is signed out.
     console.log('user is logged out');
+    setupUI();
   }
 });
 
@@ -171,8 +175,7 @@ signupForm.addEventListener('submit', (e) => {
     })
     .catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      (err) => console.log(err.message);
     });
 });
 
@@ -200,7 +203,6 @@ login.addEventListener('submit', (e) => {
     })
     .catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      (err) => console.log(err.message);
     });
 });
