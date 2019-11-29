@@ -117,7 +117,7 @@ const setupUI = (user) => {
     // info profil
     const html = `
             <div>
-                <p>Logged in as ${user.email}</p>
+                Logged in as ${user.email}
             </div>
         `;
     accountDetails.innerHTML = html;
@@ -138,15 +138,19 @@ const auth = firebase.auth();
 // const db = firebase.firestore();
 
 // ---------- QUAND LE STATUS CHANGE
+const login_content = document.querySelector('.login-content');
+
 auth.onAuthStateChanged((user) => {
   if (user) {
     // User is signed in.
     console.log('user is logged in');
     setupUI(user);
+    login_content.style.display = 'block';
   } else {
     // User is signed out.
     console.log('user is logged out');
     setupUI();
+    login_content.style.display = 'none';
   }
 });
 
