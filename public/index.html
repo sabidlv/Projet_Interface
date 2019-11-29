@@ -122,45 +122,48 @@
     </div>
     <!-- Fin modals menu authentifiction -->
     <div class="main">
-      <div class="account-details"></div>
+      <h1>InterFace</h1>
+        <div class="account-details"></div>
       <br />
       <!-- Introduire l'alias-->
-      <form id="form-alias">
-        <label for="alias" id="label-alias">Entrer votre alias :</label>
-        <input type="text" id="alias" />
-        <label for="alias-groupe" id="label-groupe"
-          >Entrer votre groupe :</label
-        >
-        <input type="text" id="alias-groupe" />
-
-        <button id="btn-save-alias" class="waves-effect waves-light btn">
-          Enregistrer
-        </button>
-        <button id="btn-login-alias" class="waves-effect waves-light btn">
-          login
-        </button>
-      </form>
-      <!--TCHAT-->
-      <div class="global-container">
-        <div id="container-msg"></div>
-        <br />
-        <form class="form-inline">
-          Entrez votre message:<br />
-          <textarea id="msg" type="text"></textarea>
-          <button
-            id="btn-envoie"
-            class="btn waves-effect waves-light"
-            type="submit"
-            name="action"
+      <section class="login-content">
+        <form id="form-alias">
+          <label for="alias" id="label-alias">Entrer votre alias :</label>
+          <input type="text" id="alias" />
+          <label for="alias-groupe" id="label-groupe"
+            >Entrer votre groupe :</label
           >
-            Envoyer
+          <input type="text" id="alias-groupe" />
+
+          <button id="btn-save-alias" class="waves-effect waves-light btn">
+            Enregistrer
+          </button>
+          <button id="btn-login-alias" class="waves-effect waves-light btn">
+            login
           </button>
         </form>
-      </div>
+        <!--TCHAT-->
+        <div class="global-container">
+          <div id="container-msg"></div>
+          <br />
+          <form class="form-inline">
+            Entrez votre message:<br />
+            <textarea id="msg" type="text"></textarea>
+            <button
+              id="btn-envoie"
+              class="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              Envoyer
+            </button>
+          </form>
+        </div>
+      </section>
     </div>
     <footer>
       <div class="footer">
-        <p>&copy; Interface3 - 2019</p>
+        &copy; Interface3 - 2019
       </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

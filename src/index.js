@@ -1,35 +1,35 @@
 
-  import * as firebase from 'firebase/app';
-  import 'firebase/database';  
-  import 'firebase/auth';
-  import { ajoutMessageTchat} from './app/helpers';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
+import { ajoutMessageTchat } from './app/helpers';
 
-  var config = {
-    apiKey: "AIzaSyCImrYHsVo251bni1yRSMUjqWeoS9MXcms",
-    authDomain: "interface-581ae.firebaseapp.com",
-    databaseURL: "https://interface-581ae.firebaseio.com",
-    storageBucket: "interface-581ae.appspot.com"
-  };
-  class ObjMessage{
-    constructor(user, msg){
-      this.user= user;
-      this.msg= msg;
-    }
+const config = {
+  apiKey: 'AIzaSyCImrYHsVo251bni1yRSMUjqWeoS9MXcms',
+  authDomain: 'interface-581ae.firebaseapp.com',
+  databaseURL: 'https://interface-581ae.firebaseio.com',
+  storageBucket: 'interface-581ae.appspot.com',
+};
+class ObjMessage {
+  constructor(user, msg) {
+    this.user = user;
+    this.msg = msg;
   }
-    class ObjUser{
-    constructor(user, groupe){
-      this.user = user;
-      this.groupe= groupe;
-      }
-    }
-let data = "";
-let user= " ";
+}
+class ObjUser {
+  constructor(user, groupe) {
+    this.user = user;
+    this.groupe = groupe;
+  }
+}
+let data = '';
+let user = ' ';
 
 firebase.initializeApp(config);
 const database = firebase.database();
 const database1 = firebase.database().ref('USER/');
 const database2 = firebase.database().ref();
-const query = database2.child('USER').orderByChild("user");//.equalTo('value');
+const query = database2.child('USER').orderByChild('user');// .equalTo('value');
 
 query.on('child_added', (snap) => {
   const data = snap.val();
@@ -40,14 +40,14 @@ query.on('child_added', (snap) => {
 document.getElementById('btn-login-alias').addEventListener('click', () => {
   user = document.getElementById('alias').value;
 
-  query.once('value',function(snapshot){
-    console.log(snapshot.val())
-    snapshot.forEach(snap => {
-      if(snap.val().user === user){
+  query.once('value', (snapshot) => {
+    console.log(snapshot.val());
+    snapshot.forEach((snap) => {
+      if (snap.val().user === user) {
         console.log(snap.val().groupe);
         document.getElementById(snap.val().groupe).setAttribute('style', 'visibility: visible;');
-        document.getElementById('label-alias').setAttribute('style','visibility: hidden;');
-        document.getElementById('alias').setAttribute('style','visibility: hidden;');
+        document.getElementById('label-alias').setAttribute('style', 'visibility: hidden;');
+        document.getElementById('alias').setAttribute('style', 'visibility: hidden;');
       }
     });
   });
@@ -57,11 +57,11 @@ document.getElementById('btn-login-alias').addEventListener('click', () => {
 document.getElementById('btn-save-alias').addEventListener('click', () => {
   user = document.getElementById('alias').value;
 
-  let groupe = document.getElementById('alias-groupe').value;
+  const groupe = document.getElementById('alias-groupe').value;
   const objUtilisateur = new ObjUser(user, groupe);
   database1.push(objUtilisateur);
-  document.getElementById('alias').value='';
-  document.getElementById('alias-groupe').value='';
+  document.getElementById('alias').value = '';
+  document.getElementById('alias-groupe').value = '';
 });
 
 // tchat
@@ -83,24 +83,22 @@ document.getElementById('wad').addEventListener('click', () => {
 });
 
 
-//pusher un post
-let mybtn = document.getElementById('btn-envoie');
-mybtn.addEventListener('click', function(event){
-    event.preventDefault();
-    let msg = document.getElementById('msg').value;
-    const objmsg = new ObjMessage(user,msg);
-    data.push({objmsg});
-    document.getElementById('msg').value='';
-    document.getElementById('msg').focus();
+// pusher un post
+const mybtn = document.getElementById('btn-envoie');
+mybtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  const msg = document.getElementById('msg').value;
+  const objmsg = new ObjMessage(user, msg);
+  data.push({ objmsg });
+  document.getElementById('msg').value = '';
+  document.getElementById('msg').focus();
 });
-
 
 
 /* ----------- MODAL MATERIALIZE ----------*/
 document.addEventListener('DOMContentLoaded', () => {
   const modals = document.querySelectorAll('.modal');
   M.Modal.init(modals);
-
 });
 
 /* ----------- BUTTON RADIO ----------*/
@@ -119,7 +117,7 @@ const setupUI = (user) => {
     // info profil
     const html = `
             <div>
-                <p>Logged in as ${user.email}</p>
+                Logged in as ${user.email}
             </div>
         `;
     accountDetails.innerHTML = html;
@@ -140,15 +138,19 @@ const auth = firebase.auth();
 // const db = firebase.firestore();
 
 // ---------- QUAND LE STATUS CHANGE
+const login_content = document.querySelector('.login-content');
+
 auth.onAuthStateChanged((user) => {
   if (user) {
     // User is signed in.
     console.log('user is logged in');
     setupUI(user);
+    login_content.style.display = 'block';
   } else {
     // User is signed out.
     console.log('user is logged out');
     setupUI();
+    login_content.style.display = 'none';
   }
 });
 
@@ -195,6 +197,5 @@ login.addEventListener('submit', (e) => {
     .catch((error) => {
       // Handle Errors here.
       (err) => console.log(err.message);
-    
     });
-  });
+});
