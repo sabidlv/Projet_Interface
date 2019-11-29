@@ -120,7 +120,6 @@ const loginLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
 
 const setupUI = (user) => {
-  debugger;
   if (user) {
     // info profil
     const html = `
@@ -147,7 +146,6 @@ const auth = firebase.auth();
 
 // ---------- QUAND LE STATUS CHANGE
 auth.onAuthStateChanged((user) => {
-  debugger;
   if (user) {
     // User is signed in.
     console.log('user is logged in');
