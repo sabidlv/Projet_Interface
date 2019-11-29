@@ -2,7 +2,6 @@
   box-sizing: border-box;
 }
 body{
-  background-color: #006064 ;
   background-image: url("./assets/images/back.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -77,3 +76,7 @@ img {
 color: white;
 }
 
+#container-msg{
+  margin: 20px;
+  
+}
