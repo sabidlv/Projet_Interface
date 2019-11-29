@@ -14,7 +14,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Interface</title>
@@ -32,9 +31,83 @@
           <a id="web" href="#">#WEB</a>
           <a id="game" href="#">#GAME</a>
         </div>
+        
+        <!-- AUTHENTIFICATION -->
+        <div>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="logged-in hidden">
+            <a href="#" id="logout">Logout</a>
+            </li>
+            <li class="logged-out hidden">
+            <a href="#" class="modal-trigger" data-target="modal-login">Login</a>
+            </li>
+            <li class="logged-out hidden">
+            <a href="#" class="modal-trigger" data-target="modal-signup">Sign up</a>
+            </li>
+          </ul>
+        </div>
+        <!-- FIN ATHENTIFICATION -->
+
       </div>
     </div>
+
+    <!-- Modals menu authentifiction -->
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+        <h4>Sign up</h4><br />
+        <form id="signup-form">
+            <div class="input-field">
+            <input type="email" id="signup-email" required />
+            <label for="signup-email">Email address</label>
+            </div>
+            <div class="input-field">
+            <input type="password" id="signup-password" required />
+            <label for="signup-password">Choose password</label>
+            </div>
+            <div>
+              <p>
+                <label>
+                  <input type="radio" name="group1" value="GAME" id='game'><span>GAME</span>
+                </label>
+              </p>
+              <p>
+                  <label>
+                  <input type="radio" name="group1" value="WAD" id='wad'><span>WAD</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="radio" name="group1" value="WEB" id='web'><span>WEB</span>
+                </label>
+              </p>
+            </div>
+            <button class="btn light-green lighten-3 z-depth-0">Sign up</button>
+        </form>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+          <h4>Login</h4><br />
+          <form id="login-form">
+            <div class="input-field">
+              <input type="email" id="login-email" required />
+              <label for="login-email">Email address</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="login-password" required />
+              <label for="login-password">Your password</label>
+            </div>
+            <button class="btn light-green lighten-3 z-depth-0 btnLogin">Login</button>
+          </form>
+        </div>
+    </div>
+    <!-- Fin modals menu authentifiction -->
+
     <div class="main">
+        <div class="account-details"></div>
       <br />
       <!-- Introduire l'alias-->
       <form id="form-alias">
@@ -65,5 +138,6 @@
         </form>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
