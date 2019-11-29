@@ -48,6 +48,8 @@ document.getElementById('btn-login-alias').addEventListener('click', () => {
         document.getElementById(snap.val().groupe).setAttribute('style', 'visibility: visible;');
         document.getElementById('label-alias').setAttribute('style', 'visibility: hidden;');
         document.getElementById('alias').setAttribute('style', 'visibility: hidden;');
+        document.getElementById('label-groupe').setAttribute('style', 'visibility: hidden;');
+        document.getElementById('alias-groupe').setAttribute('style', 'visibility: hidden;');
       }
     });
   });
