@@ -123,24 +123,42 @@
     <!-- Fin modals menu authentifiction -->
     <div class="main">
       <h1>InterFace</h1>
-        <div class="account-details"></div>
+      <div class="account-details"></div>
       <br />
       <!-- Introduire l'alias-->
       <section class="login-content">
-        <form id="form-alias">
-          <label for="alias" id="label-alias">Entrer votre alias :</label>
-          <input type="text" id="alias" />
-          <label for="alias-groupe" id="label-groupe"
-            >Entrer votre groupe :</label
-          >
-          <input type="text" id="alias-groupe" />
+        <form id="form-alias container">
+          <div class="row">
+            <div class="col m6">
+              <div class="aligner">
+                <label for="alias" id="label-alias">Entrer votre alias :</label>
+                <br />
+                <input type="text" id="alias" />
+              </div>
+              <div class="aligner">
+                <label for="alias-groupe" id="label-groupe"
+                  >Entrer votre groupe :</label
+                >
+                <br />
+                <input type="text" id="alias-groupe" />
+              </div>
 
-          <button id="btn-save-alias" class="waves-effect waves-light btn">
-            Enregistrer
-          </button>
-          <button id="btn-login-alias" class="waves-effect waves-light btn">
-            login
-          </button>
+              <button id="btn-save-alias" class="waves-effect waves-light btn">
+                Enregistrer
+              </button>
+            </div>
+            <div class="col m6">
+              <div class="aligner">
+                <label for="alias" id="label-alias">Entrer votre alias :</label>
+                <br />
+                <input type="text" id="alias" />
+                <br />
+              </div>
+              <button id="btn-login-alias" class="waves-effect waves-light btn">
+                login
+              </button>
+            </div>
+          </div>
         </form>
         <!--TCHAT-->
         <div class="global-container">

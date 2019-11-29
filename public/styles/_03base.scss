@@ -1,5 +1,7 @@
 *{
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 body{
   background-image: url("./assets/images/back.jpg");
@@ -43,7 +45,7 @@ p{
 .sideNavBar a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 1.4vw;
   color: white;
   display: block;
 }
@@ -62,6 +64,7 @@ p{
 
 #msg{
   background-color: white;
+  width: 50vw;
 
 }
 #container-msg{
@@ -74,6 +77,28 @@ p{
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+.colonnes {
+align-content: center;
+}
+.colonnes2 {
+align-content: center;
+  flex-direction: column;
+}
+.btns{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+ 
+}
+
+#btn-save-alias{
+  width: 20vw;
+}
+#btn-login-alias{
+  width: 20vw;
 }
 #alias{
   background-color: white;
