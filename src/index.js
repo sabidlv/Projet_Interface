@@ -1,6 +1,7 @@
 
   import * as firebase from 'firebase/app';
   import 'firebase/database';  
+  import 'firebase/auth';
   import { ajoutMessageTchat} from './app/helpers';
 
   var config = {
@@ -92,16 +93,7 @@ mybtn.addEventListener('click', function(event){
     document.getElementById('msg').value='';
     document.getElementById('msg').focus();
 });
-// pusher un post
-const mybtn = document.getElementById('btn-envoie');
-mybtn.addEventListener('click', (event) => {
-  event.preventDefault();
-  const msg = document.getElementById('msg').value;
-  const objmsg = new ObjMessage(user, msg);
-  data.push({ objmsg });
-  document.getElementById('msg').value = '';
-  document.getElementById('msg').focus();
-});
+
 
 
 /* ----------- MODAL MATERIALIZE ----------*/

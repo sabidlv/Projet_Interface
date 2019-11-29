@@ -14,6 +14,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Interface</title>
@@ -31,91 +32,101 @@
           <a id="web" href="#">#WEB</a>
           <a id="game" href="#">#GAME</a>
         </div>
-        
+
         <!-- AUTHENTIFICATION -->
         <div>
           <div>
             <div class="logged-in hidden">
-            <a href="#" id="logout">Logout</a>
+              <a href="#" id="logout">Logout</a>
             </div>
             <div class="logged-out hidden">
-            <a href="#" class="modal-trigger" data-target="modal-login">Login</a>
+              <a href="#" class="modal-trigger" data-target="modal-login"
+                >Login</a
+              >
             </div>
             <div class="logged-out hidden">
-            <a href="#" class="modal-trigger" data-target="modal-signup">Sign up</a>
+              <a href="#" class="modal-trigger" data-target="modal-signup"
+                >Sign up</a
+              >
             </div>
           </div>
         </div>
         <!-- FIN ATHENTIFICATION -->
-
       </div>
     </div>
-
     <!-- Modals menu authentifiction -->
     <!-- SIGN UP MODAL -->
     <div id="modal-signup" class="modal">
-        <div class="modal-content">
-        <h4>Sign up</h4><br />
+      <div class="modal-content">
+        <h4>Sign up</h4>
+        <br />
         <form id="signup-form">
-            <div class="input-field">
+          <div class="input-field">
             <input type="email" id="signup-email" required />
             <label for="signup-email">Email address</label>
-            </div>
-            <div class="input-field">
+          </div>
+          <div class="input-field">
             <input type="password" id="signup-password" required />
             <label for="signup-password">Choose password</label>
-            </div>
-            <div>
-              <p>
-                <label>
-                  <input type="radio" name="group1" value="GAME" id='game'><span>GAME</span>
-                </label>
-              </p>
-              <p>
-                  <label>
-                  <input type="radio" name="group1" value="WAD" id='wad'><span>WAD</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="radio" name="group1" value="WEB" id='web'><span>WEB</span>
-                </label>
-              </p>
-            </div>
-            <button class="btn waves-effect waves-light teal lighten-1 z-depth-0">Sign up</button>
+          </div>
+          <div>
+            <p>
+              <label>
+                <input type="radio" name="group1" value="GAME" id="game" /><span
+                  >GAME</span
+                >
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="radio" name="group1" value="WAD" id="wad" /><span
+                  >WAD</span
+                >
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="radio" name="group1" value="WEB" id="web" /><span
+                  >WEB</span
+                >
+              </label>
+            </p>
+          </div>
+          <button class="btn waves-effect waves-light teal lighten-1 z-depth-0">
+            Sign up
+          </button>
         </form>
-        </div>
+      </div>
     </div>
-
     <!-- LOGIN MODAL -->
     <div id="modal-login" class="modal">
-        <div class="modal-content">
-          <h4>Login</h4><br />
-          <form id="login-form">
-            <div class="input-field">
-              <input type="email" id="login-email" required />
-              <label for="login-email">Email address</label>
-            </div>
-            <div class="input-field">
-              <input type="password" id="login-password" required />
-              <label for="login-password">Your password</label>
-            </div>
-            <button class="btn waves-effect waves-light teal lighten-1 z-depth-0 btnLogin">Login</button>
-          </form>
-        </div>
+      <div class="modal-content">
+        <h4>Login</h4>
+        <br />
+        <form id="login-form">
+          <div class="input-field">
+            <input type="email" id="login-email" required />
+            <label for="login-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="login-password" required />
+            <label for="login-password">Your password</label>
+          </div>
+          <button
+            class="btn waves-effect waves-light teal lighten-1 z-depth-0 btnLogin"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
     <!-- Fin modals menu authentifiction -->
-
     <div class="main">
-        <div class="account-details"></div>
+      <div class="account-details"></div>
       <br />
       <!-- Introduire l'alias-->
       <form id="form-alias">
         <label for="alias" id="label-alias">Entrer votre alias :</label>
-<<<<<<< HEAD
-=======
-        <br>
->>>>>>> 2875efe4a38935269a639314ca8011fc8b4670a7
         <input type="text" id="alias" />
         <label for="alias-groupe" id="label-groupe"
           >Entrer votre groupe :</label
@@ -132,22 +143,21 @@
       <!--TCHAT-->
       <div class="global-container">
         <div id="container-msg"></div>
-          <br />
-          <form class="form-inline">
-            Entrez votre message :<br />
-            <textarea id="msg" type="text">
-            </textarea>  
+        <br />
+        <form class="form-inline">
+          Entrez votre message:<br />
+          <textarea id="msg" type="text"></textarea>
           <button
-          id="btn-envoie"
-          class="btn waves-effect waves-light"
-          type="submit"
-          name="action">
+            id="btn-envoie"
+            class="btn waves-effect waves-light"
+            type="submit"
+            name="action"
+          >
             Envoyer
           </button>
-          </form>
+        </form>
       </div>
     </div>
-
     <footer>
       <div class="footer">
         <p>&copy; Interface3 - 2019</p>
