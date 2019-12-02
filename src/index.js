@@ -1,103 +1,76 @@
-
+// import firebase and services
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
-import { ajoutMessageTchat } from './app/helpers';
+import { config } from './app/config';// import config of the database
+import ObjUser from './app/classes/user';// import classe for the data user
+// import function
+import { pathTable } from './app/helpers/connectTable';
+import { getMessage } from './app/helpers/getMessagesTable';
+import { queryGroup } from './app/helpers/groupUser';
+import { saveuser } from './app/helpers/saveUser';
+import { pushMessage } from './app/helpers/pushMessageTable';
 
-const config = {
-  apiKey: 'AIzaSyCImrYHsVo251bni1yRSMUjqWeoS9MXcms',
-  authDomain: 'interface-581ae.firebaseapp.com',
-  databaseURL: 'https://interface-581ae.firebaseio.com',
-  storageBucket: 'interface-581ae.appspot.com',
-};
-class ObjMessage {
-  constructor(user, msg) {
-    this.user = user;
-    this.msg = msg;
-  }
-}
-class ObjUser {
-  constructor(user, groupe) {
-    this.user = user;
-    this.groupe = groupe;
-  }
-}
-let data = '';
-let user = ' ';
-
+// initialize firebase
 firebase.initializeApp(config);
-const database = firebase.database();
-const database1 = firebase.database().ref('USER/');
-const database2 = firebase.database().ref();
-const query = database2.child('USER').orderByChild('user');// .equalTo('value');
+let user = '';
 
-query.on('child_added', (snap) => {
-  const data = snap.val();
-  console.log(data);
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('the html is ready');
+});
+// Login with the alias
+document.getElementById('btn-login-alias').addEventListener('click', () => {
+  const userLogin = document.getElementById('alias-login').value;
+  user = userLogin; // display the matching tchat group
+  queryGroup(firebase, userLogin);
 });
 
-// se loguer avec son alias
-document.getElementById('btn-login-alias').addEventListener('click', () => {
-  user = document.getElementById('alias-login').value;
+// Create an alias
+document.getElementById('btn-save-alias').addEventListener('click', () => {
+  const createUser = document.getElementById('alias').value;
+  const groupe = document.getElementById('alias-groupe').value;
+  const objUtilisateur = new ObjUser(createUser, groupe); // create an object
+  const database1 = firebase.database().ref('USER/'); // connect to the table USER and push in it
+  database1.push(objUtilisateur);
+  user = createUser;
+  document.getElementById('alias').value = ''; // clear the inputs
+  document.getElementById('alias-groupe').value = '';
+  queryGroup(firebase, createUser); // display the matching tchat group
+});
 
-  query.once('value', (snapshot) => {
-    console.log(snapshot.val());
-    console.log('TTTTTTTTTTTTTTTT');
-    console.log(user);
-    snapshot.forEach((snap) => {
-      if (snap.val().user === user) {
-        console.log(snap.val().groupe);
-        document.getElementById(snap.val().groupe).setAttribute('style', 'visibility: visible;');
-        document.getElementById('label-alias').setAttribute('style', 'visibility: hidden;');
-        document.getElementById('alias-login').setAttribute('style', 'visibility: hidden;');
-        document.getElementById('label-groupe').setAttribute('style', 'visibility: hidden;');
-        document.getElementById('alias-groupe').setAttribute('style', 'visibility: hidden;');
-      }
-    });
+// Display messages from the right table
+document.getElementById('game').addEventListener('click', () => {
+  const data = pathTable('GAME/'); // se connecter à la table GAME
+  getMessage(data);
+  document.getElementById('btn-envoie').addEventListener('click', (event) => {
+    event.preventDefault();
+    pushMessage(data, user);
   });
 });
-
-// se faire un alias, creation
-document.getElementById('btn-save-alias').addEventListener('click', () => {
-  user = document.getElementById('alias').value;
-
-  const groupe = document.getElementById('alias-groupe').value;
-  const objUtilisateur = new ObjUser(user, groupe);
-  database1.push(objUtilisateur);
-  document.getElementById('alias').value = '';
-  document.getElementById('alias-groupe').value = '';
-});
-
-// tchat
-document.getElementById('game').addEventListener('click', () => {
-  data = database.ref('GAME/');
-  ajoutMessageTchat(data, user);
-});
 document.getElementById('web').addEventListener('click', () => {
-  data = database.ref('WEB/');
-  ajoutMessageTchat(data, user);
+  const data = pathTable('WEB/'); // se connecter à la table WEB
+  getMessage(data);
+  document.getElementById('btn-envoie').addEventListener('click', (event) => {
+    event.preventDefault();
+    pushMessage(data, user);
+  });
 });
 document.getElementById('general').addEventListener('click', () => {
-  data = database.ref('GENERAL/');
-  ajoutMessageTchat(data, user);
+  const data = pathTable('GENERAL/'); // se connecter à la table GENERAL
+  getMessage(data);
+  document.getElementById('btn-envoie').addEventListener('click', (event) => {
+    event.preventDefault();
+    pushMessage(data, user);
+  });
 });
 document.getElementById('wad').addEventListener('click', () => {
-  data = database.ref('WAD/');
-  ajoutMessageTchat(data, user);
+  const data = pathTable('WAD/'); // se connecter à la table WAD
+  getMessage(data);
+  document.getElementById('btn-envoie').addEventListener('click', (event) => {
+    event.preventDefault();
+    pushMessage(data, user);
+  });
 });
-
-
-// pusher un post
-const mybtn = document.getElementById('btn-envoie');
-mybtn.addEventListener('click', (event) => {
-  event.preventDefault();
-  const msg = document.getElementById('msg').value;
-  const objmsg = new ObjMessage(user, msg);
-  data.push({ objmsg });
-  document.getElementById('msg').value = '';
-  document.getElementById('msg').focus();
-});
-
 
 /* ----------- MODAL MATERIALIZE ----------*/
 document.addEventListener('DOMContentLoaded', () => {
@@ -107,14 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* ----------- BUTTON RADIO ----------*/
 const contenu = document.querySelector('.contenu');
-const game = document.querySelector('#game').value;
+/* const game = document.querySelector('#game').value;
 const wad = document.querySelector('#wad').value;
-const web = document.querySelector('#web').value;
+const web = document.querySelector('#web').value; */
+
+const lesradios = document.getElementsByName('');
 
 /* ----------- MENU CONDITIONEL ----------*/
 const logoutLinks = document.querySelectorAll('.logged-out');
 const loginLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
+
+/*
+$("input[type='radio']").click(() => {
+  if ($('input[name="musee"]').is(':checked')) {
+    val1 = $('input[name="musee"]:checked').val();
+    console.log(val1);
+    flag1 = true;
+  } */
 
 const setupUI = (user) => {
   if (user) {
@@ -131,7 +114,6 @@ const setupUI = (user) => {
   } else {
     // cacher info profil
     accountDetails.innerHTML = '';
-
     logoutLinks.forEach((item) => item.style.display = 'block');
     loginLinks.forEach((item) => item.style.display = 'none');
   }
@@ -177,7 +159,7 @@ signupForm.addEventListener('submit', (e) => {
     })
     .catch((error) => {
       // Handle Errors here.
-      (err) => console.log(err.message);
+      (error) => console.log(err.message);
     });
 });
 
