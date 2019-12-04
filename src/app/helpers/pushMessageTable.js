@@ -9,7 +9,7 @@ import ObjMessage from '../classes/message';
 export function pushMessage(data, user) {
   const msg = document.getElementById('msg').value;
   const objmsg = new ObjMessage(user, msg);
-  data.push({ objmsg });
+  data.push({ objmsg }); // pusher dans la bonne table
   document.getElementById('msg').value = '';
   document.getElementById('msg').focus();
 }

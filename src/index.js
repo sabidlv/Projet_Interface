@@ -1,76 +1,64 @@
 // import firebase and services
+import $ from 'jquery';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 import { config } from './app/config';// import config of the database
-import ObjUser from './app/classes/user';// import classe for the data user
 // import function
 import { pathTable } from './app/helpers/connectTable';
 import { getMessage } from './app/helpers/getMessagesTable';
 import { queryGroup } from './app/helpers/groupUser';
-import { saveuser } from './app/helpers/saveUser';
 import { pushMessage } from './app/helpers/pushMessageTable';
+import { pushUser } from './app/helpers/pushUser';
 
 // initialize firebase
 firebase.initializeApp(config);
 let user = '';
-
+let data = '';
 document.addEventListener('DOMContentLoaded', () => {
   console.log('the html is ready');
 });
 // Login with the alias
 document.getElementById('btn-login-alias').addEventListener('click', () => {
   const userLogin = document.getElementById('alias-login').value;
+  const database = pathTable('USER/'); // connect to USER table
+  queryGroup(database, userLogin);
   user = userLogin; // display the matching tchat group
-  queryGroup(firebase, userLogin);
 });
 
 // Create an alias
 document.getElementById('btn-save-alias').addEventListener('click', () => {
   const createUser = document.getElementById('alias').value;
-  const groupe = document.getElementById('alias-groupe').value;
-  const objUtilisateur = new ObjUser(createUser, groupe); // create an object
-  const database1 = firebase.database().ref('USER/'); // connect to the table USER and push in it
-  database1.push(objUtilisateur);
+  const database = pathTable('USER/');
+  user = pushUser(database, createUser);
+  queryGroup(database, user); // display the matching tchat group
   user = createUser;
-  document.getElementById('alias').value = ''; // clear the inputs
-  document.getElementById('alias-groupe').value = '';
-  queryGroup(firebase, createUser); // display the matching tchat group
 });
 
 // Display messages from the right table
 document.getElementById('game').addEventListener('click', () => {
-  const data = pathTable('GAME/'); // se connecter à la table GAME
+  data = pathTable('GAME/'); // se connecter à la table GAME
   getMessage(data);
-  document.getElementById('btn-envoie').addEventListener('click', (event) => {
-    event.preventDefault();
-    pushMessage(data, user);
-  });
 });
 document.getElementById('web').addEventListener('click', () => {
-  const data = pathTable('WEB/'); // se connecter à la table WEB
+  data = pathTable('WEB/'); // se connecter à la table WEB
   getMessage(data);
-  document.getElementById('btn-envoie').addEventListener('click', (event) => {
-    event.preventDefault();
-    pushMessage(data, user);
-  });
 });
+
 document.getElementById('general').addEventListener('click', () => {
-  const data = pathTable('GENERAL/'); // se connecter à la table GENERAL
+  data = pathTable('GENERAL/'); // se connecter à la table GENERAL
   getMessage(data);
-  document.getElementById('btn-envoie').addEventListener('click', (event) => {
-    event.preventDefault();
-    pushMessage(data, user);
-  });
 });
 document.getElementById('wad').addEventListener('click', () => {
-  const data = pathTable('WAD/'); // se connecter à la table WAD
+  data = pathTable('WAD/'); // se connecter à la table WAD
   getMessage(data);
-  document.getElementById('btn-envoie').addEventListener('click', (event) => {
-    event.preventDefault();
-    pushMessage(data, user);
-  });
 });
+// click pour pusher un message dans le Tchat
+document.getElementById('btn-envoie').addEventListener('click', (event) => {
+  event.preventDefault();
+  pushMessage(data, user);
+});
+
 
 /* ----------- MODAL MATERIALIZE ----------*/
 document.addEventListener('DOMContentLoaded', () => {
@@ -91,13 +79,12 @@ const logoutLinks = document.querySelectorAll('.logged-out');
 const loginLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
 
-/*
 $("input[type='radio']").click(() => {
-  if ($('input[name="musee"]').is(':checked')) {
-    val1 = $('input[name="musee"]:checked').val();
-    console.log(val1);
-    flag1 = true;
-  } */
+  if ($('input[name="group1"]').is(':checked')) {
+    const nameGroup = $('input[name="group1"]:checked').val();
+  }
+});
+
 
 const setupUI = (user) => {
   if (user) {
